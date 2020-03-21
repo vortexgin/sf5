@@ -1,0 +1,6 @@
+users:
+    type:     rest
+    resource: App\Controller\v1\UsersController
+security:
+    type:     rest
+    resource: App\Controller\SecurityController

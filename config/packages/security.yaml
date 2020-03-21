@@ -1,0 +1,39 @@
+services:
+    App\Security\UserProvider:
+        arguments: ['@doctrine_mongodb']
+        public: true
+    app.security.user.provider:
+        alias: App\Security\UserProvider
+        public: true
+    app.security.user.authenticator:
+        alias: App\Security\UserAuthenticator
+        public: true
+
+security:
+    encoders:
+        App\Document\User:
+            algorithm: auto
+
+    providers:
+        app_user:
+            id: app.security.user.provider
+        users_in_memory: { memory: null }
+
+    role_hierarchy:
+        ROLE_USER: ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_SUPER_ADMIN
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: true
+            stateless: true
+            provider: app_user
+            guard:
+                authenticator: app.security.user.authenticator
+
+    access_control:
+        - { path: ^/securities, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        # - { path: ^/profile, roles: ROLE_USER }

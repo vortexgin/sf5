@@ -1,0 +1,7 @@
+# Read the documentation: https://symfony.com/doc/master/bundles/FOSRestBundle/index.html
+fos_rest:
+    routing_loader: true
+#    exception:
+#        codes:
+#            'Symfony\Component\Routing\Exception\InvalidParameterException': 400
+#            'Symfony\Component\Routing\Exception\ResourceNotFoundException': 404
